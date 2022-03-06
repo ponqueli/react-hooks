@@ -3,6 +3,7 @@
     flex-grow: 1;
     background-color: #ececec;
     padding: 30px;
+    overflow: auto;
 }
 
 .Content > * {
