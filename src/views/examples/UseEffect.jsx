@@ -11,6 +11,9 @@ const UseEffect = (props) => {
   const [fatorial, setFatorial] = useState(1);  
 
   function calcFatorial(num) {
+    if(isNaN(num)) {
+        return;
+    }
     const n = parseInt(num);
     if (n < 0) return -1;
     if (n === 0) return 1;
