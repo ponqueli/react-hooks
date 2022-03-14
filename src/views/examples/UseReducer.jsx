@@ -1,34 +1,8 @@
 import React, { useReducer } from "react";
 import SectionTitle from "../../components/layout/SectionTitle";
 import PageTitle from "../../components/layout/PageTitle";
-
-const initialState = {
-  cart: [],
-  products: [],
-  user: null,
-  //foco
-  number: 0,
-};
-
-//pegar estado atual (initialState) e pra cada ação eu vou evoluir o estado alterando algum atributo
-function reducer(state, action) {
-  switch (action.type) {
-    case "number_add2":
-      return { ...state, number: state.number + 2 };
-    case "login":
-      return { ...state, user: { payload: action.payload } };
-    case "number_multiply_by_7":
-      return { ...state, number: state.number * 7 };
-    case "number_div_by_25":
-      return { ...state, number: state.number / 25 };
-    case "number_add_n":
-        return { ...state, number: state.number + +action.payload };
-    case "number_parse_int":
-    return { ...state, number: parseInt(state.number) };
-    default:
-      return state;
-  }
-}
+import { initialState, reducer } from "../../store/index";
+import { number_add2, login } from "../../store/actions";
 
 const UseReducer = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -52,13 +26,13 @@ const UseReducer = (props) => {
         <div>
           <button
             className="btn"
-            onClick={() => dispatch({ type: "login", payload: "Sophia" })}
+            onClick={()=>login(dispatch,"Sophia")}
           >
             Logar
           </button>
           <button
             className="btn"
-            onClick={() => dispatch({ type: "number_add2" })}
+            onClick={()=>number_add2(dispatch)}
           >
             +2
           </button>
@@ -66,31 +40,31 @@ const UseReducer = (props) => {
             className="btn"
             onClick={() => dispatch({ type: "number_multiply_by_7" })}
           >
-             *7
+            *7
           </button>
           <button
             className="btn"
             onClick={() => dispatch({ type: "number_div_by_25" })}
           >
-             /25
+            /25
           </button>
           <button
             className="btn"
             onClick={() => dispatch({ type: "number_parse_int" })}
           >
-             Int
+            Int
           </button>
           <button
             className="btn"
             onClick={() => dispatch({ type: "number_add_n", payload: "-9" })}
           >
-             -9
+            -9
           </button>
           <button
             className="btn"
             onClick={() => dispatch({ type: "number_add_n", payload: 21 })}
           >
-             21
+            21
           </button>
         </div>
       </div>
